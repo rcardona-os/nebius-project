@@ -14,19 +14,19 @@ Note: this procedure has been tested with CLI version *0.12.36*
 0.12.36
 ```
 
-#### Create Profile
+#### Create profile
 - check that there is an existing profile
 
 ```bash
 (base)  user@node : ~
  ➡ nebius profile list
 
-Error: missing configuration: open /Users/raf/.nebius/config.yaml: no such file or directory
+Error: missing configuration: open /home/user/.nebius/config.yaml: no such file or directory
 To configure nebius, run:
 	$ nebius profile create
  ```
 
-- creating profile [DOCS](https://docs.nebius.com/cli/reference/profile/create)
+- creating [profile](https://docs.nebius.com/cli/reference/profile/create)
 
 Note: Choose the defaults for this lab, and particulAarly choose "Federation" if setting up Nebius CLI for personal interactive use.
 
