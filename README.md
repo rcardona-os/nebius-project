@@ -9,7 +9,7 @@
 Note: this procedure has been tested with CLI version *0.12.36*
 
 ```bash
-(base)  raf@rcardona-mac : ~
+(base)  user@node : ~
  ➡ nb version
 0.12.36
 ```
