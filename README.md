@@ -15,7 +15,7 @@ Note: this procedure has been tested with CLI version *0.12.36*
 ```
 
 #### Create Profile
-- Check that there is an existing profile
+- check that there is an existing profile
 
 ```bash
 (base)  user@node : ~
