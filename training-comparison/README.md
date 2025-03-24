@@ -60,3 +60,17 @@ COPY train.py .
 
 ENTRYPOINT ["python", "train.py"]
 ```
+
+#### - Pushing the image
+```bash
+$ podman build -t quay.io/rcardona/mnist-benchmark:cpu .
+```
+
+```bash
+$ podman push quay.io/rcardona/mnist-benchmark:cpu .
+```
+
+- Testing it locally
+```bash
+$ podman run --rm quay.io/rcardona/mnist-benchmark:cpu
+```
