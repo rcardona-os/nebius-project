@@ -1,4 +1,4 @@
-# 🧪 GPU ML Training Lab on Nebius with Slurm & Kaggle Dataset
+# ML Training Lab on Nebius with Slurm & Kaggle Dataset
 
 ## 🔸 Objective
 
