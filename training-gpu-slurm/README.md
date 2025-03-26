@@ -1,6 +1,6 @@
 # 🧪 GPU ML Training Lab on Nebius with Slurm + Real Kaggle Dataset
 
-## 🎯 Objective
+## 🔹 Objective
 
 Create a real-world lab on Nebius that:
 - Uses GPU-enabled compute resources
@@ -10,7 +10,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🧰 Tools & Technologies
+## 🔹 Tools & Technologies
 
 | Component              | Purpose                                         |
 |------------------------|-------------------------------------------------|
@@ -23,6 +23,6 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🧠 Architecture Overview
+## 🔹 Architecture Overview
 
 +-------------------+ +-----------------+ | Login / Head | <----> | Compute Node | | Node (Slurm) | | (GPU Enabled) | +-------------------+ +-----------------+ | | SSH / Slurm CLI / Jupyter | v +------------------------+ | Nebius Object Storage | | (Kaggle Datasets) | +------------------------+
