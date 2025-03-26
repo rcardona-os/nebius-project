@@ -1,6 +1,6 @@
 # 🧪 GPU ML Training Lab on Nebius with Slurm & Kaggle Dataset
 
-## 🎯 Objective
+## 🔸 Objective
 
 Create a real-world lab on Nebius that:
 - Uses GPU-enabled compute resources
@@ -10,7 +10,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🧰 Tools & Technologies
+## 🔸 Tools & Technologies
 
 | Component              | Purpose                                         |
 |------------------------|-------------------------------------------------|
@@ -23,7 +23,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🧠 Architecture Overview
+## 🔸 Architecture Overview
 
 ```
 +-------------------+        +-----------------+
@@ -42,7 +42,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 📦 Suggested Datasets (Kaggle)
+## 🔸 Suggested Datasets (Kaggle)
 
 | Dataset | Type | Link |
 |--------|------|------|
@@ -53,15 +53,15 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🚀 Lab Setup Procedure
+## 🔸 Lab Setup Procedure
 
-### 1. 🔧 Provision Infrastructure
+### 1. ➡️ Provision Infrastructure
 
 - Create **Head Node** VM (Ubuntu 22.04)
 - Create **Compute Node(s)** with GPU (e.g. `gpu-standard-v100`)
 - Ensure nodes are on the same VPC/network
 
-### 2. ⚙️ Install Slurm
+### 2. ➡️ Install Slurm
 
 #### On Head Node:
 ```bash
@@ -83,7 +83,7 @@ sudo systemctl enable slurmctld slurmd
 sudo systemctl start slurmctld slurmd
 ```
 
-### 3. 🧠 Install ML Environment
+### 3. ➡️ Install ML Environment
 
 ```bash
 sudo apt install python3-pip -y
@@ -95,7 +95,7 @@ Install CUDA toolkit:
 sudo apt install nvidia-cuda-toolkit -y
 ```
 
-### 4. 🐍 Download Dataset (Kaggle)
+### 4. ➡️ Download Dataset (Kaggle)
 
 1. Place your `kaggle.json` in the home directory:
 ```bash
@@ -109,7 +109,7 @@ chmod 600 ~/.kaggle/kaggle.json
 kaggle competitions download -c cassava-leaf-disease-classification
 ```
 
-### 5. 🧾 Write Slurm Job Script
+### 5. ➡️ Write Slurm Job Script
 
 Create `train.sh`:
 ```bash
@@ -128,7 +128,7 @@ Submit the job:
 sbatch train.sh
 ```
 
-### 6. ✍️ Write Your Model Training Script
+### 6. ➡️ Write Your Model Training Script
 
 Create `train_model.py` (example):
 ```python
@@ -140,7 +140,7 @@ print("CUDA Available:", torch.cuda.is_available())
 
 ---
 
-## 📁 Storage Considerations
+## 🔸 Storage Considerations
 
 | Option | When to Use |
 |--------|-------------|
@@ -150,7 +150,7 @@ print("CUDA Available:", torch.cuda.is_available())
 
 ---
 
-## 🧪 Optional Enhancements
+## 🔸 Optional Enhancements
 
 - ✅ Install JupyterLab on head node for interactive development
 - ✅ Add Prometheus/Grafana to monitor GPU usage
@@ -160,7 +160,7 @@ print("CUDA Available:", torch.cuda.is_available())
 
 ---
 
-## 🧭 Next Steps
+## 🔸 Next Steps
 
 Choose your preferences:
 
