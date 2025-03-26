@@ -37,3 +37,30 @@ Create a real-world lab on Nebius that:
 |  Nebius Object Storage |
 |  (Kaggle Datasets)     |
 +------------------------+
+
+
+
+---
+
+## 🔹 Suggested Datasets (Kaggle)
+
+| Dataset | Type | Link |
+|--------|------|------|
+| Cassava Leaf Disease | Image Classification | [🔗 Kaggle](https://www.kaggle.com/c/cassava-leaf-disease-classification) |
+| House Prices | Regression | [🔗 Kaggle](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques) |
+| Titanic Challenge | Binary Classification | [🔗 Kaggle](https://www.kaggle.com/c/titanic) |
+| Dog Breed Identification | Deep CNN | [🔗 Kaggle](https://www.kaggle.com/c/dog-breed-identification) |
+
+---
+
+## 🚀 Lab Setup Plan
+
+### 1. 🔧 Provision Infrastructure
+- Create **Head Node** VM (Ubuntu 22.04)
+- Create **Compute Node(s)** with GPU (e.g. `gpu-standard-v100`)
+- Ensure nodes are on the same network
+
+### 2. ⚙️ Install Slurm
+On Head Node:
+```bash
+sudo apt install slurmctld slurmdbd
