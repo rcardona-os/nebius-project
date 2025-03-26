@@ -9,7 +9,7 @@
 Note: this procedure has been tested with CLI version *0.12.36*
 
 ```bash
-$ nb version
+$ nebius version
 ```
 ```text
 0.12.36
@@ -29,7 +29,9 @@ To configure nebius, run:
 
 - creating [profile](https://docs.nebius.com/cli/reference/profile/create)
 
-Note: Choose the defaults for this lab, and particulAarly choose "Federation" if setting up Nebius CLI for personal interactive use.
+Notes: 
+- Choose the defaults for this lab, and particularly choose "Federation" if setting up Nebius CLI for personal interactive use.
+- An alias "nb" has been created, this point to the "nebius" command.
 
 ```bash
 $ nb profile create
