@@ -34,16 +34,13 @@ Notes:
 - An alias "nb" has been created, which points to the "nebius" command.
 
 ```bash
-$ nb profile create
+$ nb profile create sandbox
 ```
 ```text
-profile name: test
 Set api endpoint: api.eu.nebius.cloud
 ✔ federation
 Set federation endpoint: auth.eu.nebius.com
-Switch to your browser to complete the authentication process. If it didn't
- open automatically, use the following link: https://auth.eu.nebius.com/oauth2/authoriz...
-profile "test" configured and activated
+profile "sandbox" configured and activated
 ```
 
 - test profile
@@ -51,5 +48,13 @@ profile "test" configured and activated
 $ nb profile list
 ```
 ```text
-test [default]
+sandbox [default]
 ```
+- associate local profile with cloud project
+```bash
+$ nb config set parent-id project-< .......... >
+```
+
+Where to find parent-id?
+
+[Parent ID](media/)profile-parent-id.png
