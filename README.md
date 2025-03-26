@@ -43,7 +43,7 @@ Set federation endpoint: auth.eu.nebius.com
 profile "sandbox" configured and activated
 ```
 
-- test profile
+- test (sandbox) profile
 ```bash
 $ nb profile list
 ```
