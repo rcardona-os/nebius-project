@@ -1,6 +1,6 @@
-# ML Training Lab on Nebius with Slurm & Kaggle Dataset
+# 🧪 GPU ML Training Lab on Nebius with Slurm + Real Kaggle Dataset
 
-## 🔸 Objective
+## 🎯 Objective
 
 Create a real-world lab on Nebius that:
 - Uses GPU-enabled compute resources
@@ -10,7 +10,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🔸 Tools & Technologies
+## 🧰 Tools & Technologies
 
 | Component              | Purpose                                         |
 |------------------------|-------------------------------------------------|
@@ -23,7 +23,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🔸 Architecture Overview
+## 🧠 Architecture Overview
 
 ```
 +-------------------+        +-----------------+
@@ -42,7 +42,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🔸 Suggested Datasets (Kaggle)
+## 📦 Suggested Datasets (Kaggle)
 
 | Dataset | Type | Link |
 |--------|------|------|
@@ -53,94 +53,138 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🔸 Lab Setup Procedure
+## 🚀 Lab Setup Procedure
 
-### 1. ➡️ Provision Infrastructure
+### 1. 🔧 Provision Infrastructure
 
-- Create **Head Node** VM (Ubuntu 22.04)
-- Create **Compute Node(s)** with GPU (e.g. `gpu-standard-v100`)
-- Ensure nodes are on the same VPC/network
+Use Terraform to provision resources:
 
-### 2. ➡️ Install Slurm
+```hcl
+resource "yandex_compute_instance" "slurm_head" {
+  name = "slurm-head"
+  ...
+}
+
+resource "yandex_compute_instance" "slurm_compute" {
+  count = 2
+  name  = "slurm-compute-${count.index}"
+  ...
+}
+```
+
+Run Terraform:
+```bash
+terraform init
+terraform apply
+```
+
+---
+
+### 2. ⚙️ Install Slurm (Multi-node)
 
 #### On Head Node:
 ```bash
-sudo apt update && sudo apt install slurmctld slurmdbd -y
+sudo apt update && sudo apt install slurmctld slurmdbd munge -y
 ```
 
 #### On Compute Node(s):
 ```bash
-sudo apt update && sudo apt install slurmd -y
+sudo apt update && sudo apt install slurmd munge -y
 ```
 
-#### Configure Slurm:
-- Copy or create `/etc/slurm/slurm.conf` on all nodes
-- Sample `slurm.conf` should include definitions for control and compute nodes
+#### Sync Configuration
 
-Enable and start services:
+Use this sample `slurm.conf`:
 ```bash
-sudo systemctl enable slurmctld slurmd
-sudo systemctl start slurmctld slurmd
+ControlMachine=slurm-head
+NodeName=slurm-compute-[0-1] CPUs=8 Gres=gpu:1 State=UNKNOWN
+PartitionName=gpu Nodes=ALL Default=YES MaxTime=INFINITE State=UP
 ```
 
-### 3. ➡️ Install ML Environment
+Distribute `munge.key` across all nodes and start services:
+```bash
+sudo systemctl enable munge slurmctld slurmd
+sudo systemctl start munge slurmctld slurmd
+```
+
+---
+
+### 3. 🧠 Install ML Environment
 
 ```bash
 sudo apt install python3-pip -y
 pip3 install torch torchvision torchaudio kaggle
-```
-
-Install CUDA toolkit:
-```bash
 sudo apt install nvidia-cuda-toolkit -y
 ```
 
-### 4. ➡️ Download Dataset (Kaggle)
+---
 
-1. Place your `kaggle.json` in the home directory:
+### 4. 🐍 Download Dataset (Kaggle)
+
+1. Add `kaggle.json`:
 ```bash
 mkdir ~/.kaggle
 cp kaggle.json ~/.kaggle/
 chmod 600 ~/.kaggle/kaggle.json
 ```
 
-2. Download a dataset (example: Cassava Leaf Disease):
+2. Download dataset:
 ```bash
 kaggle competitions download -c cassava-leaf-disease-classification
 ```
 
-### 5. ➡️ Write Slurm Job Script
+---
 
-Create `train.sh`:
+### 5. 🧾 Slurm Job Script
+
+`train.sh`
 ```bash
 #!/bin/bash
 #SBATCH --job-name=ml-train
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
-#SBATCH --time=01:00:00
+#SBATCH --time=02:00:00
 #SBATCH --output=output_%j.log
 
+module load python
 python3 train_model.py
 ```
 
-Submit the job:
+Submit:
 ```bash
 sbatch train.sh
 ```
 
-### 6. ➡️ Write Your Model Training Script
+---
 
-Create `train_model.py` (example):
+### 6. ✍️ Model Training Script
+
+`train_model.py`
 ```python
 import torch
 import torchvision
-print("Torch Version:", torch.__version__)
-print("CUDA Available:", torch.cuda.is_available())
+import torchvision.transforms as transforms
+from torchvision import models
+from torch import nn, optim
+
+# Simple device check
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Using device:", device)
+
+# Dummy model setup (expand as needed)
+model = models.resnet18(pretrained=False)
+model.fc = nn.Linear(model.fc.in_features, 5)  # For 5 classes
+model = model.to(device)
+
+# Example input
+dummy_input = torch.randn(4, 3, 224, 224).to(device)
+output = model(dummy_input)
+print("Output shape:", output.shape)
 ```
 
 ---
 
-## 🔸 Storage Considerations
+## 📁 Storage Considerations
 
 | Option | When to Use |
 |--------|-------------|
@@ -150,24 +194,42 @@ print("CUDA Available:", torch.cuda.is_available())
 
 ---
 
-## 🔸 Optional Enhancements
+## 📦 GitHub Repo Structure
 
-- ✅ Install JupyterLab on head node for interactive development
-- ✅ Add Prometheus/Grafana to monitor GPU usage
-- ✅ Test job queueing and multi-user workflows
-- ✅ Add Docker/Podman to containerize training jobs
-- ✅ Move to OpenShift AI with Slurm backend later
+```
+slurm-gpu-ml-lab/
+├── terraform/               # Infrastructure as code
+│   └── main.tf
+├── scripts/
+│   ├── train.sh             # Slurm job script
+│   └── setup.sh             # Bash setup script (install Slurm, Python, etc)
+├── src/
+│   └── train_model.py       # ML model training
+├── data/                    # Place for datasets (optional)
+├── README.md
+└── .kaggle/kaggle.json      # Kaggle API credentials
+```
 
 ---
 
-## 🔸 Next Steps
+## 🧪 Optional Enhancements
+
+- ✅ Install JupyterLab on head node for interactive dev
+- ✅ Add Prometheus/Grafana for GPU metrics
+- ✅ Run multiple jobs to test scheduling
+- ✅ Test multi-GPU training
+- ✅ Integrate with OpenShift AI later
+
+---
+
+## 🧭 Next Steps
 
 Choose your preferences:
 
 1. 🧮 **Single-node or Multi-node Slurm cluster?**
 2. 🐍 **PyTorch or TensorFlow?**
 3. 📦 **Object Storage or NFS?**
-4. 📜 **Do you want automation (Terraform / Bash / Ansible)?**
-5. 💻 **SSH-based or Jupyter-based interface?**
+4. 📜 **Use automation (Terraform / Bash / Ansible)**
+5. 💻 **Use SSH-based or Jupyter-based interface**
 
 Let’s go build it! 🚀
