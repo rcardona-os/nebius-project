@@ -40,7 +40,7 @@ Set api endpoint: api.eu.nebius.cloud
 ✔ federation
 Set federation endpoint: auth.eu.nebius.com
 Switch to your browser to complete the authentication process. If it didn't
- open automatically, use the following link: https://auth.eu.nebius.com/oauth2/authorize?client_id=nebiu...
+ open automatically, use the following link: https://auth.eu.nebius.com/oauth2/authoriz...
 profile "test" configured and activated
 ```
 
