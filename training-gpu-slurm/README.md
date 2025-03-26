@@ -25,4 +25,15 @@ Create a real-world lab on Nebius that:
 
 ## 🔹 Architecture Overview
 
-+-------------------+ +-----------------+ | Login / Head | <----> | Compute Node | | Node (Slurm) | | (GPU Enabled) | +-------------------+ +-----------------+ | | SSH / Slurm CLI / Jupyter | v +------------------------+ | Nebius Object Storage | | (Kaggle Datasets) | +------------------------+
++-------------------+        +-----------------+
+|   Login / Head    | <----> |   Compute Node  |
+|     Node (Slurm)  |        |  (GPU Enabled)  |
++-------------------+        +-----------------+
+        |
+        | SSH / Slurm CLI / Jupyter
+        |
+        v
++------------------------+
+|  Nebius Object Storage |
+|  (Kaggle Datasets)     |
++------------------------+
