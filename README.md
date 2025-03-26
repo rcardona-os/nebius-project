@@ -9,8 +9,9 @@
 Note: this procedure has been tested with CLI version *0.12.36*
 
 ```bash
-(base)  user@node : ~
- ➡ nb version
+$ nb version
+```
+```text
 0.12.36
 ```
 
@@ -18,21 +19,22 @@ Note: this procedure has been tested with CLI version *0.12.36*
 - check that there is an existing profile
 
 ```bash
-(base)  user@node : ~
- ➡ nebius profile list
-
+$ nebius profile list
+ ```
+```text
 Error: missing configuration: open /home/user/.nebius/config.yaml: no such file or directory
 To configure nebius, run:
 	$ nebius profile create
- ```
+```
 
 - creating [profile](https://docs.nebius.com/cli/reference/profile/create)
 
 Note: Choose the defaults for this lab, and particulAarly choose "Federation" if setting up Nebius CLI for personal interactive use.
 
 ```bash
-(base)  user@node : ~
- ➡ nb profile create
+$ nb profile create
+```
+```text
 profile name: test
 Set api endpoint: api.eu.nebius.cloud
 ✔ federation
@@ -44,7 +46,8 @@ profile "test" configured and activated
 
 - test profile
 ```bash
-(base)  user@node : ~
- ➡ nb profile list
+$ nb profile list
+```
+```text
 test [default]
- ```
+```
