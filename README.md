@@ -57,4 +57,4 @@ $ nb config set parent-id project-< .......... >
 
 Where to find parent-id?
 
-(Parent ID)[media/profile-parent-id.png]
+![Parent ID](media/profile-parent-id.png)
