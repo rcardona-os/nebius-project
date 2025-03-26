@@ -1,6 +1,6 @@
 # 🧪 GPU ML Training Lab on Nebius with Slurm + Real Kaggle Dataset
 
-## 🔹 Objective
+## 🎯 Objective
 
 Create a real-world lab on Nebius that:
 - Uses GPU-enabled compute resources
@@ -10,7 +10,7 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🔹 Tools & Technologies
+## 🧰 Tools & Technologies
 
 | Component              | Purpose                                         |
 |------------------------|-------------------------------------------------|
@@ -23,8 +23,9 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🔹 Architecture Overview
+## 🧠 Architecture Overview
 
+```
 +-------------------+        +-----------------+
 |   Login / Head    | <----> |   Compute Node  |
 |     Node (Slurm)  |        |  (GPU Enabled)  |
@@ -37,12 +38,11 @@ Create a real-world lab on Nebius that:
 |  Nebius Object Storage |
 |  (Kaggle Datasets)     |
 +------------------------+
-
-
+```
 
 ---
 
-## 🔹 Suggested Datasets (Kaggle)
+## 📦 Suggested Datasets (Kaggle)
 
 | Dataset | Type | Link |
 |--------|------|------|
@@ -53,14 +53,121 @@ Create a real-world lab on Nebius that:
 
 ---
 
-## 🚀 Lab Setup Plan
+## 🚀 Lab Setup Procedure
 
 ### 1. 🔧 Provision Infrastructure
+
 - Create **Head Node** VM (Ubuntu 22.04)
 - Create **Compute Node(s)** with GPU (e.g. `gpu-standard-v100`)
-- Ensure nodes are on the same network
+- Ensure nodes are on the same VPC/network
 
 ### 2. ⚙️ Install Slurm
-On Head Node:
+
+#### On Head Node:
 ```bash
-sudo apt install slurmctld slurmdbd
+sudo apt update && sudo apt install slurmctld slurmdbd -y
+```
+
+#### On Compute Node(s):
+```bash
+sudo apt update && sudo apt install slurmd -y
+```
+
+#### Configure Slurm:
+- Copy or create `/etc/slurm/slurm.conf` on all nodes
+- Sample `slurm.conf` should include definitions for control and compute nodes
+
+Enable and start services:
+```bash
+sudo systemctl enable slurmctld slurmd
+sudo systemctl start slurmctld slurmd
+```
+
+### 3. 🧠 Install ML Environment
+
+```bash
+sudo apt install python3-pip -y
+pip3 install torch torchvision torchaudio kaggle
+```
+
+Install CUDA toolkit:
+```bash
+sudo apt install nvidia-cuda-toolkit -y
+```
+
+### 4. 🐍 Download Dataset (Kaggle)
+
+1. Place your `kaggle.json` in the home directory:
+```bash
+mkdir ~/.kaggle
+cp kaggle.json ~/.kaggle/
+chmod 600 ~/.kaggle/kaggle.json
+```
+
+2. Download a dataset (example: Cassava Leaf Disease):
+```bash
+kaggle competitions download -c cassava-leaf-disease-classification
+```
+
+### 5. 🧾 Write Slurm Job Script
+
+Create `train.sh`:
+```bash
+#!/bin/bash
+#SBATCH --job-name=ml-train
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --time=01:00:00
+#SBATCH --output=output_%j.log
+
+python3 train_model.py
+```
+
+Submit the job:
+```bash
+sbatch train.sh
+```
+
+### 6. ✍️ Write Your Model Training Script
+
+Create `train_model.py` (example):
+```python
+import torch
+import torchvision
+print("Torch Version:", torch.__version__)
+print("CUDA Available:", torch.cuda.is_available())
+```
+
+---
+
+## 📁 Storage Considerations
+
+| Option | When to Use |
+|--------|-------------|
+| NFS    | Simple and fast for shared filesystem between nodes |
+| Nebius Object Storage | For scalable, durable blob storage (datasets/models) |
+| Local disk | For temporary, high-speed storage |
+
+---
+
+## 🧪 Optional Enhancements
+
+- ✅ Install JupyterLab on head node for interactive development
+- ✅ Add Prometheus/Grafana to monitor GPU usage
+- ✅ Test job queueing and multi-user workflows
+- ✅ Add Docker/Podman to containerize training jobs
+- ✅ Move to OpenShift AI with Slurm backend later
+
+---
+
+## 🧭 Next Steps
+
+Choose your preferences:
+
+1. 🧮 **Single-node or Multi-node Slurm cluster?**
+2. 🐍 **PyTorch or TensorFlow?**
+3. 📦 **Object Storage or NFS?**
+4. 📜 **Do you want automation (Terraform / Bash / Ansible)?**
+5. 💻 **SSH-based or Jupyter-based interface?**
+
+Let’s go build it! 🚀
