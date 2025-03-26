@@ -31,7 +31,7 @@ To configure nebius, run:
 
 Notes: 
 - Choose the defaults for this lab, and particularly choose "Federation" if setting up Nebius CLI for personal interactive use.
-- An alias "nb" has been created, this point to the "nebius" command.
+- An alias "nb" has been created, which points to the "nebius" command.
 
 ```bash
 $ nb profile create
