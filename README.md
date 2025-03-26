@@ -50,7 +50,7 @@ $ nb profile list
 ```text
 sandbox [default]
 ```
-- associate local profile with cloud project
+- associate local profile with parent-id (a.k.a project id)
 ```bash
 $ nb config set parent-id project-< .......... >
 ```
