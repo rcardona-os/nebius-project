@@ -1,18 +1,13 @@
 ## Provision simple vm
 
-#### 1 - Find compute platform_id preset_id for the selected preset (i.e cpu-d3, c4vcpu-16gb)
+#### 1 - Find compute platform_id for the selected preset (i.e cpu-d3, 4vcpu-16gb)
 ```bash
 $ export PLATFORM_ID=$(nb compute platform list --format json | jq -r '
   .items[] | select(.metadata.name == "cpu-d3") | .metadata.id')
 ```
 
 ```bash
-$ export PRESET_ID=$(nb compute platform list --format json | jq -r '
-  .items[]
-  | select(.metadata.id == "computeplatform-e00caqbn6nysa972yq")
-  | .spec.presets[]
-  | select(.name == "4vcpu-16gb")
-  | .name')
+$ export PRESET_NAME="4vcpu-16gb"
 ```
 
 #### 1 - Create a boot disk
@@ -60,14 +55,13 @@ $ nb compute instance create \
     "cloud_init_user_data": $USER_DATA,
     "resources": {
       "platform": $PLATFORM_ID,
-      "preset": "<preset_name>"
+      "preset": $PRESET_NAME
     },
     "boot_disk": {
       "attach_mode": "READ_WRITE",
       "existing_disk": {
         "id": "$BOOT_DISK_ID"
-      },
-      "device_id": "<user_defined_id>"
+      }
     },
     "network_interfaces": [
       {
