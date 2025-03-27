@@ -54,7 +54,7 @@ $ nb compute instance create \
     "stopped": false,
     "cloud_init_user_data": $USER_DATA,
     "resources": {
-      "platform": $PLATFORM_ID,
+      "platform": "computeplatform-e00caqbn6nysa972yq"
       "preset": $PRESET_NAME
     },
     "boot_disk": {
