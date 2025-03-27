@@ -43,19 +43,17 @@ EOF
 
 #### 2 - Provision VM
 ```bash
-$ nb compute instance create \
-  ${GPU_CLUSTER_ID:+--gpu-cluster-id} ${GPU_CLUSTER_ID:+"$GPU_CLUSTER_ID"} \
-  - <<EOF
+$ nb compute instance create ${GPU_CLUSTER_ID:+--gpu-cluster-id "$GPU_CLUSTER_ID"} - <<EOF
 {
   "metadata": {
     "name": "first-vm"
   },
   "spec": {
     "stopped": false,
-    "cloud_init_user_data": $USER_DATA,
+    "cloud_init_user_data": $USER_DATA_JSON,
     "resources": {
-      "platform": "computeplatform-e00caqbn6nysa972yq"
-      "preset": $PRESET_NAME
+      "platform": "$PLATFORM_ID",
+      "preset": "$PRESET_NAME"
     },
     "boot_disk": {
       "attach_mode": "READ_WRITE",
@@ -75,3 +73,10 @@ $ nb compute instance create \
 }
 EOF
 ```
+
+
+#### Exiting running
+```bash
+$ nb compute instance list --format json | jq -r 
+'.items[] | select(.status.state == "RUNNING") | .metadata.name'
+``` 
