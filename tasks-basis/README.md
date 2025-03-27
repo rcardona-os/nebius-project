@@ -88,6 +88,19 @@ $ nb compute instance create ${GPU_CLUSTER_ID:+--gpu-cluster-id "$GPU_CLUSTER_ID
 EOF
 ```
 
+#### Listing all vms
+```bash
+$ nb compute instance list --format json | jq -r '
+  .items[] 
+  | [
+      .metadata.name, 
+      .metadata.id,
+      .status.network_interfaces[0].ip_address.address, 
+      .status.network_interfaces[0].public_ip_address.address, 
+      .status.state
+    ] 
+  | @tsv'
+```
 
 #### Listing running vms
 ```bash
