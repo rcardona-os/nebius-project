@@ -1,6 +1,7 @@
 #### Folder structure
 
 simple-vm-terraform/
+
 ├── main.tf
 
 ├── variables.tf
