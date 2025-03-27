@@ -1,5 +1,11 @@
 ## Provision simple vm
 
+#### 1 - Find compute platform_id preset_id for the selected preset (i.e cpu-d3, c4vcpu-16gb)
+```bash
+$ export PLATFORM_ID=$(nb compute platform list --format json | jq -r '
+  .items[] | select(.metadata.name == "cpu-d3") | .metadata.id')
+```
+
 #### 1 - Create a boot disk
 ```bash
 $ export BOOT_DISK_ID=$(nebius compute disk create \
@@ -44,7 +50,7 @@ $ nb compute instance create \
     "stopped": false,
     "cloud_init_user_data": $USER_DATA,
     "resources": {
-      "platform": "<platform_id>",
+      "platform": $PLATFORM_ID$,
       "preset": "<preset_name>"
     },
     "boot_disk": {
