@@ -6,6 +6,15 @@ $ export PLATFORM_ID=$(nb compute platform list --format json | jq -r '
   .items[] | select(.metadata.name == "cpu-d3") | .metadata.id')
 ```
 
+```bash
+$ export PLATFORM_ID=$(nb compute platform list --format json | jq -r '
+  .items[]
+  | select(.metadata.id == "computeplatform-e00caqbn6nysa972yq")
+  | .spec.presets[]
+  | select(.name == "4vcpu-16gb")
+  | .name')
+```
+
 #### 1 - Create a boot disk
 ```bash
 $ export BOOT_DISK_ID=$(nebius compute disk create \
