@@ -33,7 +33,7 @@ EOF
 
 #### 2 - Provision VM
 ```bash
-$ nebius compute instance create \
+$ nb compute instance create \
   ${GPU_CLUSTER_ID:+--gpu-cluster-id} ${GPU_CLUSTER_ID:+"$GPU_CLUSTER_ID"} \
   - <<EOF
 {
