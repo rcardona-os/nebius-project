@@ -55,7 +55,7 @@ $ openssl rsa -in $NB_AUTHKEY_PRIVATE_PATH \
 
 #### 3 - Upload a public key to create the authorized key and save its ID
 ```bash
-$ nb export NB_AUTHKEY_PUBLIC_ID=$(nebius iam auth-public-key create \
+$ export NB_AUTHKEY_PUBLIC_ID=$(nebius iam auth-public-key create \
  --account-service-account-id $NB_SA_ID \
  --data "$(cat $NB_AUTHKEY_PUBLIC_PATH)" \
  --format json | jq -r '.metadata.id')
