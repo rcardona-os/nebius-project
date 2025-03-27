@@ -77,6 +77,14 @@ EOF
 
 #### Exiting running
 ```bash
-$ nb compute instance list --format json | jq -r 
-'.items[] | select(.status.state == "RUNNING") | .metadata.name'
-``` 
+$ nb compute instance list --format json | jq -r '
+  .items[] 
+  | select(.status.state == "RUNNING") 
+  | [
+      .metadata.name, 
+      .status.network_interfaces[0].ip_address.address, 
+      .status.network_interfaces[0].public_ip_address.address, 
+      .status.state
+    ] 
+  | @tsv'
+```
