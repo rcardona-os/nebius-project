@@ -87,6 +87,11 @@ $ nb vpc pool list
 $ nb storage bucket list
 ```
 
+#### List vpc subnets
+```bash
+$ nb vpc subnet list
+```
+
 #### List network_id
 ```
 $ nb vpc subnet list --format json| jq -r '.[].[].spec.network_id'
