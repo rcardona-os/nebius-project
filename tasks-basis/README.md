@@ -32,29 +32,10 @@ EOF
 )
 ```
 
-#### 2 - Create user data
-```bash
-$ cat user-data.yaml
-```
-
-```text
-#cloud-config
-users:
-  - name: raf
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    shell: /bin/bash
-    ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAA.....
-```
-
-```bash
-$ export USER_DATA_JSON=$(jq -Rs < user-data.yaml)
-```
-
 #### 3- Provision VM
 ```bash
-export PLATFORM_ID="cpu-d3"
-export PRESET_NAME="4vcpu-16gb"
+$ export PLATFORM_ID="cpu-d3"
+$ export PRESET_NAME="4vcpu-16gb"
 ```
 
 ```bash
