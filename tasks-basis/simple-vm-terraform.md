@@ -34,3 +34,21 @@ $ nb iam group-membership create \
   --parent-id $NB_EDITORS_GROUP_ID \
   --member-id $NB_SA_ID
 ```
+
+#### 2 - Create an authorized key
+```bash
+$ mkdir -p ~/.nebius/authkey
+```
+```bash
+$ export NB_AUTHKEY_PRIVATE_PATH=~/.nebius/authkey/private.pem
+```
+```bash
+$ export NB_AUTHKEY_PUBLIC_PATH=~/.nebius/authkey/public.pem
+```
+```bash
+$ openssl genrsa -out $NB_AUTHKEY_PRIVATE_PATH 4096
+```
+```bash
+$ openssl rsa -in $NB_AUTHKEY_PRIVATE_PATH \
+  -outform PEM -pubout -out $NB_AUTHKEY_PUBLIC_PATH
+```
