@@ -20,14 +20,14 @@ $ export SUBNET_ID=$(nebius vpc subnet list \
 
 #### 2 - Create a user data configuration
 ```bash
-export $USER_DATA_JSON=$(cat <<EOF | tee user-data.yaml | jq -Rs
+$ export USER_DATA_JSON=$(cat <<EOF | tee user-data.yaml | jq -Rs
 #cloud-config
 users:
   - name: raf
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
     ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ...
+      - ssh-rsa AAAAB3NzaC1yc2E....
 EOF
 )
 ```
