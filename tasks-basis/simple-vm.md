@@ -12,7 +12,7 @@ $ export BOOT_DISK_ID=$(nebius compute disk create \
   | jq -r ".metadata.id")
 ```
 
-#### 2 - Get subnet infroamtion
+#### 2 - Get subnet information
 ```bash
 $ export SUBNET_ID=$(nebius vpc subnet list \
   --format json | jq -r ".items[0].metadata.id")
