@@ -42,6 +42,11 @@ $ export USER_DATA_JSON=$(jq -Rs < user-data.yaml)
 
 #### 3- Provision VM
 ```bash
+export PLATFORM_ID="cpu-d3"
+export PRESET_NAME="4vcpu-16gb"
+```
+
+```bash
 $ nb compute instance create ${GPU_CLUSTER_ID:+--gpu-cluster-id "$GPU_CLUSTER_ID"} - <<EOF
 {
   "metadata": {
