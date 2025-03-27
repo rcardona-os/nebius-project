@@ -99,7 +99,7 @@ $ nb compute instance list --format json | jq -r '
   | @tsv'
 ```
 
-#### Deleting exiting vms
+#### Deleting vms
 ```bash
 $ nb compute instance delete --id <your-instance-id>
 ```
