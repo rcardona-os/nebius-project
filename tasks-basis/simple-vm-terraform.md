@@ -61,4 +61,8 @@ $ export NB_AUTHKEY_PUBLIC_ID=$(nebius iam auth-public-key create \
  --format json | jq -r '.metadata.id')
 ```
 
+#### 4 - Initialise terraform
+```bash
+$ terraform init
+```
 
