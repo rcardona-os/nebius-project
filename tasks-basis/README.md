@@ -38,7 +38,7 @@ $ nb compute instance create \
   - <<EOF
 {
   "metadata": {
-    "name": "training-vm"
+    "name": "first-vm"
   },
   "spec": {
     "stopped": false,
