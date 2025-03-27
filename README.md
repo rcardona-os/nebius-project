@@ -77,7 +77,7 @@ $ nb compute disk list
 $ nb compute gpu-cluster list
 ```
 
-#### List Kubernetes clusters
+#### List vpc pool
 ```
 $ nb vpc pool list
 ```
@@ -87,12 +87,12 @@ $ nb vpc pool list
 $ nb storage bucket list
 ```
 
-#### List PostgreSQL clusters
+#### List network_id
 ```
-$ nb managed-postgresql cluster list
+$ nb vpc subnet list --format json| jq -r '.[].[].spec.network_id'
 ```
 
-#### List MLflow clusters
+#### List kubernetes clusters
 ```
-$ nb managed-mlflow cluster list
+$ nb applications v1alpha1 k-8-s-release
 ```
