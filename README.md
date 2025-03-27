@@ -74,25 +74,25 @@ $ nb compute disk list
 
 #### List GPU clusters
 ```
-$ nb  compute gpu-cluster list
+$ nb compute gpu-cluster list
 ```
 
 #### List Kubernetes clusters
 ```
-$ nb  managed-kubernetes cluster list
+$ nb managed-kubernetes cluster list
 ```
 
 #### List buckets (Object Storage)
 ```
-$ nb  storage bucket list
+$ nb storage bucket list
 ```
 
 #### List PostgreSQL clusters
 ```
-$ nb  managed-postgresql cluster list
+$ nb managed-postgresql cluster list
 ```
 
 #### List MLflow clusters
 ```
-$ nb  managed-mlflow cluster list
+$ nb managed-mlflow cluster list
 ```
