@@ -81,9 +81,15 @@ $ nb compute instance list --format json | jq -r '
   | select(.status.state == "RUNNING") 
   | [
       .metadata.name, 
+      .metadata.id,
       .status.network_interfaces[0].ip_address.address, 
       .status.network_interfaces[0].public_ip_address.address, 
       .status.state
     ] 
   | @tsv'
+```
+
+#### Deleting exiting vms
+```bash
+$ nb compute instance delete --id <your-instance-id>
 ```
