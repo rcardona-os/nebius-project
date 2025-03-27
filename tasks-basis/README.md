@@ -7,7 +7,7 @@ $ export PLATFORM_ID=$(nb compute platform list --format json | jq -r '
 ```
 
 ```bash
-$ export PLATFORM_ID=$(nb compute platform list --format json | jq -r '
+$ export PRESET_ID=$(nb compute platform list --format json | jq -r '
   .items[]
   | select(.metadata.id == "computeplatform-e00caqbn6nysa972yq")
   | .spec.presets[]
@@ -59,7 +59,7 @@ $ nb compute instance create \
     "stopped": false,
     "cloud_init_user_data": $USER_DATA,
     "resources": {
-      "platform": $PLATFORM_ID$,
+      "platform": $PLATFORM_ID,
       "preset": "<preset_name>"
     },
     "boot_disk": {
