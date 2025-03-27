@@ -79,7 +79,7 @@ $ nb compute gpu-cluster list
 
 #### List Kubernetes clusters
 ```
-$ nb managed-kubernetes cluster list
+$ nb vpc pool list
 ```
 
 #### List buckets (Object Storage)
