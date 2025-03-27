@@ -18,7 +18,7 @@ $ export SUBNET_ID=$(nebius vpc subnet list \
   --format json | jq -r ".items[0].metadata.id")
 ```
 
-#### 2 - Create user data configuration
+#### 3 - Create user data configuration
 ```bash
 $ export USER_DATA_JSON=$(cat <<EOF | tee user-data.yaml | jq -Rs
 #cloud-config
@@ -32,7 +32,7 @@ EOF
 )
 ```
 
-#### 3- Provision VM
+#### 4 - Provision VM
 ```bash
 $ export PLATFORM_ID="cpu-d3"
 $ export PRESET_NAME="4vcpu-16gb"
