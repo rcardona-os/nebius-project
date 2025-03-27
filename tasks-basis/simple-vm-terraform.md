@@ -24,7 +24,13 @@ $ export NB_SA_ID=$(nb iam service-account create \
 - Getting *editors* ID
 ```bash
 $ export NB_EDITORS_GROUP_ID=$(nebius iam group get-by-name \
-  --name editors --parent-id <tenant_id> --format json \
+  --name editors --parent-id < tenant_id > --format json \
   | jq -r '.metadata.id')
 ```
 
+- Asspciating the service account to the *editors* group
+```bash
+$ nb iam group-membership create \
+  --parent-id $NB_EDITORS_GROUP_ID \
+  --member-id $NB_SA_ID
+```
