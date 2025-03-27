@@ -1,15 +1,5 @@
 ## Provision simple vm
 
-#### 1 - Find compute platform_id for the selected preset (i.e cpu-d3, 4vcpu-16gb)
-```bash
-$ export PLATFORM_ID=$(nb compute platform list --format json | jq -r '
-  .items[] | select(.metadata.name == "cpu-d3") | .metadata.id')
-```
-
-```bash
-$ export PRESET_NAME="4vcpu-16gb"
-```
-
 #### 1 - Create a boot disk
 ```bash
 $ export BOOT_DISK_ID=$(nebius compute disk create \
@@ -41,7 +31,16 @@ EOF
 )
 ```
 
-#### 2 - Provision VM
+#### 2 - Create user data
+```bash
+$ cat user-data.yaml
+```
+
+```bash
+$ export USER_DATA_JSON=$(jq -Rs < user-data.yaml)
+```
+
+#### 3- Provision VM
 ```bash
 $ nb compute instance create ${GPU_CLUSTER_ID:+--gpu-cluster-id "$GPU_CLUSTER_ID"} - <<EOF
 {
@@ -75,7 +74,7 @@ EOF
 ```
 
 
-#### Exiting running
+#### Listing running vms
 ```bash
 $ nb compute instance list --format json | jq -r '
   .items[] 
