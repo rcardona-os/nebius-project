@@ -59,10 +59,15 @@ Where to find parent-id?
 
 ![Parent ID](media/profile-parent-id.png)
 
+- check the profile configuration
+```bash
+$ nb config list
+```
+
 ----
 
 ### Resource Manager to list specific resource types
-#### List all available compute resources
+#### List available hardware options for new VMs
 ```
 $ nb compute platform list
 ```
