@@ -28,7 +28,7 @@ $ export NB_EDITORS_GROUP_ID=$(nebius iam group get-by-name \
   | jq -r '.metadata.id')
 ```
 
-- Asspciating the service account to the *editors* group
+- Associating the service account to the *editors* group
 ```bash
 $ nb iam group-membership create \
   --parent-id $NB_EDITORS_GROUP_ID \
