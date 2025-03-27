@@ -18,7 +18,7 @@ $ export SUBNET_ID=$(nebius vpc subnet list \
   --format json | jq -r ".items[0].metadata.id")
 ```
 
-#### 2 - Create a user data configuration
+#### 2 - Create user data configuration
 ```bash
 $ export USER_DATA_JSON=$(cat <<EOF | tee user-data.yaml | jq -Rs
 #cloud-config
