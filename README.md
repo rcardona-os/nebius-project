@@ -58,3 +58,41 @@ $ nb config set parent-id project-< .......... >
 Where to find parent-id?
 
 ![Parent ID](media/profile-parent-id.png)
+
+----
+
+##### Resource Manager to list specific resource types
+# List all compute instances
+```
+$ nb compute instance list
+```
+
+# List all disks
+```
+$ nb compute disk list
+```
+
+# List GPU clusters
+```
+$ nb  compute gpu-cluster list
+```
+
+# List Kubernetes clusters
+```
+$ nb  managed-kubernetes cluster list
+```
+
+# List buckets (Object Storage)
+```
+$ nb  storage bucket list
+```
+
+# List PostgreSQL clusters
+```
+$ nb  managed-postgresql cluster list
+```
+
+# List MLflow clusters
+```
+$ nb  managed-mlflow cluster list
+```
