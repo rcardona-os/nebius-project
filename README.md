@@ -124,7 +124,7 @@ $ nb iam service-account create \
 
 - Getting *editors* ID
 ```bash
-$ nebius iam group get-by-name \
+$ nb iam group get-by-name \
   --name editors --parent-id < tenant_id > --format json
 ```
 
@@ -133,4 +133,41 @@ $ nebius iam group get-by-name \
 $ nb iam group-membership create \
   --parent-id $NB_EDITORS_GROUP_ID \
   --member-id $NB_SA_ID
+```
+#### Create public key and service account association
+- Load existing key to the enviroment (Option 1)
+```bash
+$ export NB_AUTHKEY_PUBLIC_PATH="~/.ssh/id_rsa.pub"
+```
+- Association key
+```bash
+$ nb iam auth-public-key create \
+ --account-service-account-id < NB_SA_ID > \
+ --data "$(cat $NB_AUTHKEY_PUBLIC_PATH)"
+```
+- Create a brand new key (Option 2)
+```bash
+$ export NB_AUTHKEY_PRIVATE_PATH=~/.ssh/nebius-private.pem
+```
+```bash
+$ export NB_AUTHKEY_PUBLIC_PATH=~/.ssh/nebius-public.pem
+```
+```bash
+$ openssl genrsa -out $NB_AUTHKEY_PRIVATE_PATH 4096
+```
+```bash
+$ openssl rsa -in $NB_AUTHKEY_PRIVATE_PATH \
+  -outform PEM -pubout -out $NB_AUTHKEY_PUBLIC_PATH
+```
+- Association key
+```bash
+$ nb iam auth-public-key create \
+ --account-service-account-id < NB_SA_ID > \
+ --data "$(cat $NB_AUTHKEY_PUBLIC_PATH)"
+```
+===
+#### List ssh keys
+- List keys 
+```bash
+$ 
 ```
