@@ -126,7 +126,7 @@ $ nb iam service-account create \
 $ nb iam whoami --format json | jq -r ".user_profile.tenants[].tenant_id"
 ```
 
-- Getting *editors* ID
+- Getting group *editors* ID
 ```bash
 $ nb iam group get-by-name --name editors \
   --parent-id < tenant_id > --format json | jq -r ".metadata.id"
