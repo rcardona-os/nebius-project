@@ -2,9 +2,11 @@
 
 simple-vm-terraform/
 
-├── main.tf
+├── 0-provider.tf
 
-├── variables.tf
+├── 1-boot-disk.tf
+
+├── 2-vm-provision.tf.hold
 
 ├── terraform.tfvars
 
