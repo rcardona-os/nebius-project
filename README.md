@@ -133,3 +133,4 @@ $ nebius iam group get-by-name \
 $ nb iam group-membership create \
   --parent-id $NB_EDITORS_GROUP_ID \
   --member-id $NB_SA_ID
+```
