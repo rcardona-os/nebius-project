@@ -1,0 +1,7 @@
+#cloud-config
+users:
+  - name: raf
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDvcff+LaAd/XeSRmOSWB+aXVQqZaBMc1ISw6pJkEIJABIFy1ewbfH4Jy3FDMuKh87B6ZVj/ASb8TbsDBMTNykud0DRGJu/n4m1L1aCT0hccd2+sniUyCUMa9XZqsgrV5P5rC3gj+ftCMS5BOc7Ryqvd5jZb/V9EExb77F6DvMRl7SV6WSCE+qbvtwDigI5G7oYilUAmza4WqF8k+oXQDRroA6n0np4dPsWBn4XrfI2CyFQtcPdHyUZnpj12z6ZR2m8zXnIznvjIywDtBOXWiHH6RpqAk/UAAeKzbTSub9ecqAFYAUrN5MvbHyURHDxtAyus6HnXLc+GYfVgDFmWUVsksvpaThyk6GuCDfetY8hXlFGDKzuzNUa14vYYZlDgT1V8YdcT+KpJRQ0dACcTg88pGdfZWvniFozEHKul1GYuxe12PLdVNbbFtuQbKEKoDtP6VLLWBh3jP7hT4gqR05eWzBL8j88fBg7wkGvQlpwqrSeMu0i5gcOohcONNe7Bsoj/Kvm92QATljNjWPyauUIuFhOXDiotlKcJ2liaEcJhSjz7u6FMnHqg8GCcyclXICBQIin0FVr2uGo+i89Z0yZgoMuIUbFZ65yvyqznG4K3wfqxraWVlf/Dtot8eKT0FkOm6ieVOz0oHCcUbWKP//yVB9OXBpnz2bYm4+WWWSiiw==

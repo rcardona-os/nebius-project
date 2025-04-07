@@ -67,6 +67,12 @@ $ nb config list
 ----
 
 ### Resource Manager to list specific resource types
+
+#### List service accounts
+```bash
+$ nb iam service-account list --format json | jq -r .items[].metadata.id
+```
+
 #### List available hardware options for new VMs
 ```
 $ nb compute platform list
