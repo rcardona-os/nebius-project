@@ -121,11 +121,15 @@ $ nb applications v1alpha1 k-8-s-release
 $ nb iam service-account create \
   --name terraform-sa --format json
 ```
+- Find tenant IDs
+```bash
+$ nb iam whoami --format json | jq -r ".user_profile.tenants[].tenant_id"
+```
 
 - Getting *editors* ID
 ```bash
-$ nb iam group get-by-name \
-  --name editors --parent-id < tenant_id > --format json
+$ nb iam group get-by-name --name editors \
+  --parent-id < tenant_id > --format json | jq -r ".metadata.id"
 ```
 
 - Associating the service account to the *editors* group
