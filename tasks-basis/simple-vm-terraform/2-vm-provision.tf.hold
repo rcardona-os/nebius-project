@@ -1,26 +1,28 @@
-resource "nebius_compute_instance" "vm" {
-  name        = "my-vm"
-  platform_id = "standard-v1"
-  zone_id     = "ru-central1-a"
+resource "nebius_compute_v1alpha1_instance" "vm" {
+  name        = var.vm.name 
 
   resources {
-    cores  = 2
-    memory = 4
+    platform  = var.platform
+    preset    = var.preset
   }
 
   boot_disk {
-    initialize_params {
-      image_id = var.image_id
-      size     = 10
+    attach_mode = var.attach_mode
+    existing_disk {
+             id = boot_disk.id
     }
+
   }
 
   network_interface {
-    subnet_id = var.subnet_id
-    nat       = true
+    [
+      {
+        name      = "network-interface-0"
+        subnet_id = var.subnet_id
+      }
+
+    ]
   }
 
-  metadata = {
-    user-data = filebase64("${path.module}/user-data.yaml")
-  }
+  cloud_init_user_data = var.cloud_init_user_data
 }
