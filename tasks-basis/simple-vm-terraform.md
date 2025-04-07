@@ -15,10 +15,9 @@ simple-vm-terraform/
 ├── user-data.yaml
 
 
-
 #### 1 - Prerequisites
 
-- [Service account](https://github.com/rcardona-os/nebius-project/blob/main/tasks-basis/simple-vm-terraform.md) associated with the editors group of the project
+- [Service account](https://github.com/rcardona-os/nebius-project/tree/main?tab=readme-ov-file#create-service-account) associated with the editors group of the project
 
 #### 2 - Create an authorized key
 ```bash
