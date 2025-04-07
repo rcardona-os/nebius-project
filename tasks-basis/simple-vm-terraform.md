@@ -19,23 +19,8 @@ simple-vm-terraform/
 
 - [Service account](https://github.com/rcardona-os/nebius-project/tree/main?tab=readme-ov-file#create-service-account) associated with the editors group of the project
 
-#### 2 - Create an authorized key
-```bash
-$ mkdir -p ~/.nebius/authkey
-```
-```bash
-$ export NB_AUTHKEY_PRIVATE_PATH=~/.nebius/authkey/private.pem
-```
-```bash
-$ export NB_AUTHKEY_PUBLIC_PATH=~/.nebius/authkey/public.pem
-```
-```bash
-$ openssl genrsa -out $NB_AUTHKEY_PRIVATE_PATH 4096
-```
-```bash
-$ openssl rsa -in $NB_AUTHKEY_PRIVATE_PATH \
-  -outform PEM -pubout -out $NB_AUTHKEY_PUBLIC_PATH
-```
+- [Create public key]() and load it to Nebius Cloud
+
 
 #### 3 - Upload a public key to create the authorized key and save its ID
 ```bash
