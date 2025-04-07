@@ -112,3 +112,24 @@ $ nb vpc subnet list --format json| jq -r '.[].[].spec.network_id'
 ```
 $ nb applications v1alpha1 k-8-s-release
 ```
+
+===
+
+#### Create service account
+- Creating service account
+```bash
+$ nb iam service-account create \
+  --name terraform-sa --format json
+```
+
+- Getting *editors* ID
+```bash
+$ nebius iam group get-by-name \
+  --name editors --parent-id < tenant_id > --format json
+```
+
+- Associating the service account to the *editors* group
+```bash
+$ nb iam group-membership create \
+  --parent-id $NB_EDITORS_GROUP_ID \
+  --member-id $NB_SA_ID
