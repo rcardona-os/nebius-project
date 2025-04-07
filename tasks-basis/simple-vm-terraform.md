@@ -19,7 +19,7 @@ simple-vm-terraform/
 
 - [Service account](https://github.com/rcardona-os/nebius-project/tree/main?tab=readme-ov-file#create-service-account) associated with the editors group of the project
 
-- [Create public key]() and load it to Nebius Cloud
+- [Create public key](https://github.com/rcardona-os/nebius-project/tree/main?tab=readme-ov-file#create-public-key-and-service-account-association) and load it to Nebius Cloud
 
 
 #### 3 - Upload a public key to create the authorized key and save its ID
