@@ -8,9 +8,8 @@ terraform {
 }
 
 provider "nebius" {
-  service_account = {
-    private_key_file_env = var.private_key_file_env
-    public_key_id_env    = var.public_key_id_env 
-    account_id_env       = var.account_id_env
+  service_account = {**+/
+    public_key_id    = var.public_key_id 
+    account_id       = var.account_id
   }
 }

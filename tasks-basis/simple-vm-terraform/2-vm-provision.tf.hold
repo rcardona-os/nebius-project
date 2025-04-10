@@ -1,5 +1,5 @@
 resource "nebius_compute_v1alpha1_instance" "vm" {
-  name        = var.vm.name 
+  name        = var.vm_name 
 
   resources {
     platform  = var.platform
