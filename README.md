@@ -173,5 +173,5 @@ $ nb iam auth-public-key create \
 #### List ssh keys
 - List keys 
 ```bash
-$ 
+$ nb iam auth-public-key list
 ```
