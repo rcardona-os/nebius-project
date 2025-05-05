@@ -122,6 +122,13 @@ $ nb iam service-account create \
   --name terraform-sa --format json
 ```
 - Find tenant IDs
+
+Where to find parent-id?
+
+![Parent ID](media/profile-tenant-id.png)
+
+or
+
 ```bash
 $ nb iam whoami --format json | jq -r ".user_profile.tenants[].tenant_id"
 ```
