@@ -196,3 +196,15 @@ $ nb iam auth-public-key create \
 ```bash
 $ nb iam auth-public-key list
 ```
+
+===
+#### List k8s clusters
+```bash
+$ nb nebius mk8s v1 cluster list
+```
+
+#### Get external credentials
+```bash
+$ nb mk8s v1 cluster get-credentials --id mk8scluster-e00t2jap...... --external
+```
+===
