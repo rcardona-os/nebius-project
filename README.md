@@ -89,7 +89,8 @@ or in a table format
 ```bash
 $ {
   echo -e "ID\tNAME\tREGION"
-  nb iam tenant list --format json | jq -r '.items[] | [.metadata.id, .metadata.name, .status.region] | @tsv'
+  nb iam tenant list --format json | jq -r '
+    .items[] | [.metadata.id, .metadata.name, .status.region] | @tsv'
 } | column -t -s $'\t'
 ```
 
