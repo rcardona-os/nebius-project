@@ -80,7 +80,8 @@ $ nb compute platform list
 
 #### List regions
 ```bash
-$ nb iam tenant list --format json | jq -r '.items[] | [.metadata.id, .metadata.name, .status.region] | @tsv'
+$ nb iam tenant list --format json | jq -r '
+  .items[] | [.metadata.id, .metadata.name, .status.region] | @tsv'
 ```
 
 or in a table format
