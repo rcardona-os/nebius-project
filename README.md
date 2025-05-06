@@ -127,6 +127,11 @@ $ nb vpc pool list
 $ nb storage bucket list
 ```
 
+#### Force delete of empty bucket
+```bash
+$ nb storage bucket delete storagebucket-e0010557940128464263835 --purge-at 1970-01-31T02:30:59Z
+```
+
 #### List vpc subnets
 ```bash
 $ nb vpc subnet list
