@@ -101,6 +101,10 @@ $ nb iam tenant list --format json | jq -r '
   .items[] | [.metadata.id, .metadata.parent_id, .metadata.name, .status.region]'
 ```
 
+```bash
+$ nb iam tenant list --format json | jq '[.items[] | {id: .metadata.id, parent_id: .metadata.parent_id, container_state: .status.container_state}]'
+```
+
 #### List all disks
 ```
 $ nb compute disk list
