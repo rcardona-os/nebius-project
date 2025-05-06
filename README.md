@@ -92,6 +92,13 @@ $ {
 } | column -t -s $'\t'
 ```
 
+helpful
+
+```bash
+$ nb iam tenant list --format json | jq -r '
+  .items[] | [.metadata.id, .metadata.parent_id, .metadata.name, .status.region]'
+```
+
 #### List all disks
 ```
 $ nb compute disk list
